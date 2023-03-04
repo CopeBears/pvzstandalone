@@ -1,0 +1,420 @@
+﻿<html>
+<head>
+    <title>Plants VS.Zombies</title>
+    <link rel="stylesheet" href="UI.css">
+	 <link rel="stylesheet" href="sprites.css">
+    <body id="dBody" topmargin="0" leftmargin="0" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+   <div id="preloader">
+	    <div id="status" class="WindowFrame"></div>
+    </div>
+    <script src="js/Cfunction.js"></script>
+    <script src="js/Welcome.js"></script>
+    <div id="dFlagMeter">
+	<div id="dFlagMeterTitle" display="none"><div id="dFlagMeterTitleB" display="none"></div><div id="sFlagMeterTitleF" display="none"></div></div>
+	<div id="dFlagMeterContent">
+		<img id="imgFlagMeterEmpty" src="images/interface/FlagMeterEmpty.png">
+		<img id="imgFlagMeterFull" src="images/interface/FlagMeterFull.png">
+		<img class="flag" id="imgFlag1" src="images/interface/FlagMeterParts2.png">
+		<img class="flag" id="imgFlag2" src="images/interface/FlagMeterParts2.png">
+		<img class="flag" id="imgFlag3" src="images/interface/FlagMeterParts2.png">
+		<img class="flag" id="imgFlag4" src="images/interface/FlagMeterParts2.png">
+		<img id="imgGQJC" src="images/interface/FlagMeterLevelProgress.png">
+		<img id="imgFlagHead" src="images/interface/FlagMeterParts1.png">
+	</div>
+    </div>
+    <div id="dSurface" class="WindowFrame">
+	<div id="iSurfaceBackground">
+		<map name="FPMap0">
+			<script>
+			(function(){
+				var s="",ar=[{c:'641,466,724,527',k:'ShowOptions()'},{c:'718,512,790,558',k:'ShowHelp()'},{c:'800,495,879,548',k:'SetNone($(\'dSurface\'));PlayAudio(\'tap\')'}];
+				for(var i=0;i<=2;i++)s+='<area href="javascript:;" shape="rect" coords="'+ar[i].c+'" onclick="'+ar[i].k+'">';document.write(s);
+			})()
+			</script>
+		</map>
+		<img src="images/interface/Surface.jpg" usemap="#FPMap0" border="0">
+		<div style="position:absolute;width:350px;height:150px;left:468px;top:82px;background:url(images/interface/SelectorScreen_Shadow_Adventure.png)"></div>
+		<div class="adventure0" id="dAdventure" onmouseover="this.style.backgroundPosition='bottom';" onmouseout="this.style.backgroundPosition='top'" onclick="StartAdventure()"></div>
+		<div style="position:absolute;width:318px;height:136px;left:476px;top:208px;background:url(images/interface/SelectorScreen_Shadow_Survival.png)"></div>
+		<div class="mini" onmouseover="this.style.backgroundPosition='bottom';" onmouseout="this.style.backgroundPosition='top'" onclick="ShowMiniGame()"></div>
+		<div style="position:absolute;width:289px;height:127px;left:480px;top:307px;background:url(images/interface/SelectorScreen_Shadow_Challenge.png)"></div>
+		<div class="riddle" onmouseover="this.style.backgroundPosition='bottom';" onmouseout="this.style.backgroundPosition='top'" onclick="ShowRiddleGame()"></div>
+		<div class="handbook" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="ViewHandBook()"></div>
+		<div id="ZombieHand"></div>
+		<div id="dNameDiv0">
+			<div id="dNameDiv1" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="ShowLoginDiv()"></div>
+			<div id="dNameDiv2"></div>
+		</div>
+	</div>
+	<div id="dPause">
+		<table border="0" width="434" cellspacing="0" cellpadding="0" height="484">
+			<tr>
+				<td width="107" height="142" valign="bottom">
+				<img border="0" src="images/interface/dialog_topleft.png" width="423" height="401"></td>
+			</tr>
+		</table>
+		<div class="list">
+			<div class="hidden" onclick="SetNone($('dSurface'),$('dPause'))"></div>
+			<div id="dPauseAD"></div>
+		</div>
+		<div class="button" onclick="ResetGame($('dMenu0'))">Restart</div>
+	</div>
+	<div id="dSurfaceBack">
+		<div id="dHelp" onclick="HiddenHelp()"></div>
+		<div id="dOptionsMenuback">
+			<div id="dOptionsMenu">
+				<div class="OMd0">
+					<div class="OMd1">
+						<div><input type="checkbox" id="cAutoSun" value="1" onchange="CheckAutoSun(this)"> <label for="cAutoSun" id="lAutoSun">Auto</label></div>
+						<div><input type="checkbox" id="cSilence" value="1"> <label for="cSilence" id="lSilence">Mute&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  </label></div>
+					</div>
+				</div>
+				<div class="BigLevel button" onclick="ShowLevel()">Level</div>
+				<div class="BigLevel button" onclick="ShowSpeed()">Speed</div>
+				<div class="BigLevel button" onclick="ViewHandBook()">Learn</div>
+				<div class="BigLevel button" onclick="SelectModal(oS.Lvl)">Restart</div>
+				<div class="BigLevel button" onclick="SelectModal(0);SetBlock($('dSurface'),$('iSurfaceBackground'));">Exit</div>
+				<div class="OptionsMenuButton" style="margin-top:20px" onmousedown="OptionsMenuDown(this,$('sOptionsMenu'))" onmouseup="OptionsMenuUP(this,$('sOptionsMenu'));HiddenOptions();CheckAutoSun($('cAutoSun'));CheckSilence($('cSilence'))"><span id="sOptionsMenu" class="OptionsMenuButtonSpan">Return</span></div>
+			</div>
+<script>
+var ArLvl={1:'1',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'10'},
+LvlList=function(BLvl,SLvl1,SLvl2){
+	var s='',startlvl=BLvl*10;
+	do{
+		s+='<span class="lvl" onclick="StartAdventure('+(startlvl+SLvl1)+')">'+ArLvl[SLvl1]+'</span>';
+	}while(SLvl1++<SLvl2)
+	document.write(s);
+};
+</script>
+		</div>
+		<div id="dAdvSmallContainer" class="TitleSmallContainer Challenge_Background">
+			<div id="dAdvSmallTitle">Adventure</div>
+			<div class="list">
+				<div class="title">Daylight Fields</div>
+				<div class="icon">
+					<img class="img1" style="clip:rect(0,61px,auto,0);left:16px" border="0" src="images/interface/Almanac_Ground.jpg" width="366" height="61"></td>
+					<img class="img2" border="0" src="images/interface/Almanac_ZombieWindow2.png" width="76" height="76"></p>
+				</div>
+				<div class="lvl2">
+					<script>LvlList(0,1,10)</script>
+				</div>
+			</div>
+			<div class="list">
+				<div class="title">Nightly Meadow</div>
+				<div class="icon">
+					<img class="img1" style="clip:rect(0,183px,auto,122px);left:-106px" border="0" src="images/interface/Almanac_Ground.jpg" width="366" height="61"></td>
+					<img class="img2" border="0" src="images/interface/Almanac_ZombieWindow2.png" width="76" height="76"></p>
+				</div>
+				<div class="lvl2">
+					<script>LvlList(1,1,10)</script>
+				</div>
+			</div>
+			<div class="list">
+				<div class="title">Daytime Pool</div>
+				<div class="icon">
+					<img class="img1" style="clip:rect(0,305px,auto,244px);left:-228px" border="0" src="images/interface/Almanac_Ground.jpg" width="366" height="61"></td>
+					<img class="img2" border="0" src="images/interface/Almanac_ZombieWindow2.png" width="76" height="76"></p>
+				</div>
+				<div class="lvl2">
+					<script>LvlList(2,1,10)</script>
+				</div>
+			</div>
+			<div class="list">
+				<div class="title">Dragon Palace</div>
+				<div class="icon">
+					<img class="img1" style="clip:rect(0,244px,auto,183px);left:-167px" border="0" src="images/interface/Almanac_Ground.jpg" width="366" height="61"></td>
+					<img class="img2" border="0" src="images/interface/Almanac_ZombieWindow2.png" width="76" height="76"></p>
+				</div>
+				<div class="lvl2">
+					<script>LvlList(3,1,10)</script>
+				</div>
+			</div>
+			<div class="list">
+				<div class="title">Water Town</div>
+				<div class="icon">
+					<img class="img1" style="clip:rect(0,61px,auto,0);left:16px" border="0" src="images/interface/jiaxing.png" width="366" height="61"></td>
+					<img class="img2" border="0" src="images/interface/Almanac_ZombieWindow2.png" width="76" height="76"></p>
+				</div>
+				<div class="lvl2">
+					<script>LvlList(4,1,10)</script>
+				</div>
+			</div>
+			<div class="button" id="closeButton" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'"  onclick="HiddenLevel()">close</div>
+		</div>
+		
+		<div id="dMiniSmallContainer" class="TitleSmallContainer Challenge_Background" style="font-size: 40px;">
+			<div id="dMiniSmallTitle" >CHINA LEVELS (BONUS)</div>
+			<div id="dMini0" class="minigame-names" style="font-size: 40px;">
+				<table id="minigameSheet" cellspacing="0" width="0%" style="font-size: 40px;">
+				<script>
+					(function(){
+						var ar=['100','CHINA','wall0.png',
+						'101','AMBUSH','wall1.png',
+						'102','NIGHT','wall2.png',
+						'103','GHOST','wall3.png',
+						'104','WATER','zhi.png',
+						'105','SWIMMERS','zhi1.png',
+						'106','GRAVE','bai.png',
+						'107','MIDNIGHT','bai1.png',
+						'108','VOLCANO','huo.png',
+						'109','FUEL','huo1.png',
+						'110','PALACE','wang.png',
+						'111','SIEGE','wang0.png',
+						'112','IMPERIAL','wang1.png',
+						'FB','DUNGEON','FB.png',
+						'WJY','JIANG YI','WJY.png'],
+						v,i=0,n,l=ar.length,s='';
+						for(n=0;n<l;n+=3){
+							i%5==0&&(s+='<tr>');
+							s+='<td height="139" valign="top" onclick="SelectModal(\''+ar[n]+'\')"><div><img src="images/interface/'+ar[n+2]+'"></div><div class="list">'+ar[n+1]+'</div></td>';
+							(i+1)%5==0?(
+								s+='</tr>',
+								i=0
+							):++i;
+						}
+						if(i!=0){
+							while(--i)s+='<td>　</td>';
+							s+='</tr>';
+						}
+						document.write(s)
+					})()
+				</script>
+				</table>
+				<div class="button" id="exitMinigame" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'"  onclick="HiddenMiniGame()">close</div>
+			</div>
+		</div>
+</div>
+		<div id="dRiddleSmallContainer" class="TitleSmallContainer Challenge_Background">
+			<div id="dMiniSmallTitle">MINI-GAMES</div>
+			<div id="dMini0">
+				<table id="minigameSheet2" cellspacing="0" width="0%">
+				<script>
+					(function(){
+						var ar=['NutBowling','NUTBOWL ','baolingqiu.png',
+						'GuanXin','STARGAZE','GuanXin.png',
+						'yy','TIT-TAT','yy.png',
+						'ZombieGames','FOOTBALL','woxinfeixiang.png',
+						'yicixingxiaofei','ITEMS','yicixingxiaofei.gif',
+						'kaotianchifan','SUNLIGHT','kaotianchifan.png',
+						'pinjizhidi','FFA','pinjizhidi.png',
+					    'bpsyc','FOOD','bpsyc.png',
+						'fmdzz','NIGHT','fmdzz.png',
+						'ydbs','FLOWERS','ten.png',
+						'KongXi','FLYERS','KongXi.png',
+						'YXZZ','STEALTH','YXZZ.png',
+						'xjsdmf','TROUBLE','sm.png',
+						'QRWX','24/7','QRWX.png',
+                        '150','EVERGREEN ','mota.png'],
+						v,i=0,n,l=ar.length,s='';
+						for(n=0;n<l;n+=3){
+							i%5==0&&(s+='<tr>');
+							s+='<td height="139" valign="top" onclick="SelectModal(\''+ar[n]+'\')"><div><img src="images/interface/'+ar[n+2]+'"></div><div class="list">'+ar[n+1]+'</div></td>';
+							(i+1)%5==0?(
+								s+='</tr>',
+								i=0
+							):++i;
+						}
+						if(i!=0){
+							while(--i)s+='<td>　</td>';
+							s+='</tr>';
+						}
+						document.write(s)
+					})()
+				</script>
+				</table>
+				<div class="button" id="exitMenu" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'"  onclick="HiddenMiniGame()">close</div>
+				</div>
+
+			<!--单机界面已作废，无特殊请勿乱动-->
+			<div id="dRiddle0">
+				<div class="button" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'"  onclick="ReturnRiddleInx()">puzzle mode</div>
+			</div>
+			<!--对战界面已作废，无特殊请勿乱动-->
+			<div id="dRiddle1">
+				<div style="position:relative;width:94%;font-size:12px;margin-top:10px;margin-left:auto;margin-right:auto;color:#000">
+					<button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(0)">all games</button> 
+					<button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(1)">create</button> 
+					<button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(2)">play</button>&nbsp;&nbsp;&nbsp;
+					<input type=text id="tRiddleID" size="1"><button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(3,$('tRiddleID').value)">serieal number</button>&nbsp;&nbsp;&nbsp;
+					<input type=text id="tRiddleUserName" size="3"><button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(4,$('tRiddleUserName').value)">creator select</button>&nbsp;&nbsp;&nbsp;
+					<input type=text id="tRiddleTitle" size="3"><button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(5,$('tRiddleTitle').value)">title select</button>
+					<div style="border:1px solid #000;height:440px;width:100%;background:#fafafa">
+						<iframe name="fRiddleAlreadyCreateGame" id="fRiddleAlreadyCreateGame" marginwidth="1" marginheight="1" height="100%" width="100%" scrolling="no" border="0" frameborder="0"></iframe>
+					</div>
+				</div>
+				<div class="button" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'"  onclick="ReturnRiddleInx()">Rebel Mode</div>
+				<div class="button" style="left:220px" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'"  onclick="if($User.Visitor.UserName!='guest'||confirm('guests cant perform this.'))SelectModal('ImZombieCreateGame')">create new level</div>
+			</div>
+			<div id="dRiddleClose" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="HiddenRiddleGame()">close&nbsp;</div>				
+		</div>
+	</div>
+    </div>
+<!--     
+	<div class="WindowFrame" id="dAll" style="width:400px; height:400px">
+ -->	
+ 	<div class="WindowFrame" id="dAll" >
+	<div id="tGround"></div>
+	<div id="dCardList"></div>
+	<div id="dZombie"></div>
+	<div id="bShowHandBook" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="ViewHandBook()">Plants&nbsp;</div>
+	<div id="dSelectCard">
+		<div class="title"></div>
+		<div id="dPCard"></div>
+		<div class="bTitle">
+			<input class="button" onclick="ResetSelectCard()" type="button" value="reset" name="btnReset" id="btnReset" style="color:#FC6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="button" onclick="oS.ScrollBack(LetsGO)" type="button" value="start" disabled="disabled" name="btnOK" id="btnOK" style="color:#888">
+		</div>
+	</div>
+	<div id="dTop">
+		<div id="dSunNum">
+			<span id="sSunNum"></span>
+		</div>
+		<div id="tdShovel">
+			<img id="imgShovel" src="images/interface/Shovel/0.gif" onmousedown="ChoseShovel(event)">
+		</div>
+	</div>
+	<div id="dPZ"></div>
+    </div>
+
+    <div id="dMenu">
+	<div id="dMenu0" class="Menu" onclick="ShowSpeed()">SPEED</div>
+	<div id="dMenu1" class="Menu" onclick="ClickMenu()">MENU</div>
+    </div>
+    <div id="dHandBook" class="WindowFrame">
+	<div class="title">Plant-Idex</div>
+	<div class="content">
+		<div>
+			<img border="0" src="images/Plants/SunFlower/0.gif" width="73" height="74"><br>
+			<input class="button" type="button" value="plants" name="btnViewPlant" id="btnViewPlant" onclick="InitHandBookPCard()">
+		</div>
+		<div style="left:50%;padding-top:95px">
+			<img border="0" src="images/Zombies/Zombie/0.gif" width="149" height="130"><br>
+			<input class="button" type="button" value="zombies" name="btnViewZombie" id="btnViewZombie" onclick="InitHandBookZCard()">
+		</div>
+	</div>
+	<div class="close" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="CloseHandBook()">close&nbsp;</div>
+    </div>
+    <div id="dHandBookPZ" class="WindowFrame Almanac_PlantBack">
+	<div id="dHandBookP">
+		<div class="title" id="handbookTitle">Plants</div>
+		<div id="dHandBookPCard"></div>
+		<div id="pPlantBack"></div>
+		<div class="list" id="plantList">
+			<div id="pHandBookPlant"></div>
+			<div id="dHandBookPlantName"></div>
+			<div id="dProducePlant"></div>
+			<div class="cost_cool">
+				<span class="cost">cost:</span><span id="spSunNum"></span><span class="cool">cooldown:</span><span id="spCoolTime"></span>
+			</div>
+		</div>
+	</div>
+	<div id="dHandBookZ">
+		<div class="title" id="handbookTitleZombie">Zombies</div>
+		<div id="dHandBookZCard"></div>
+		<div id="pZombieBack"></div>
+		<div class="list" id="zombieList">
+			<div id="pHandBookZombie"></div>
+			<div id="dHandBookZombieName"></div>
+			<div id="dProduceZombie"></div>
+		</div>
+	</div>
+	<div class="dButton">
+		<div class="button1" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="ReturnHandBookInx()">Plant-Idex</div>
+		<div class="button2" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="CloseHandBook()">close&nbsp;</div>
+	</div>
+    </div>
+    <div id="dNewPlant">
+	<div id="dNewPlantTitle">New Plant!</div>
+	<div class="card">
+		<img id="iNewPlantCard" border="0">
+	</div>
+	<br>
+	<div id="dNewPlantName"></div>
+	<br><br><br>
+	<div id="dNewPlantTooltip"></div>
+	<br><br><br><br><br><br>
+	<input type="button" value="next level!" name="btnNextLevel" id="btnNextLevel">
+    </div>
+    <div id="dProcess">
+	<input class="button" type="button" value="close" onclick="SetHidden($('dProcess'))">
+	<script>document.write('<a style="margin-left:50px;cursor:pointer;color:#FF0;font-size:15px;text-decoration:none;font-weight:bold" target="_blank" ></a>');</script>
+    </div>
+    <div id="dSpeedContainer">
+	<div class="title" id="speedAdjustment">SPEED ADJUSTMENT</div>
+	<div class="dSpeed" id="dSpeed" title="set speed">
+		
+		<div class="dS2"><div onclick="CSpeed(1,20,.25)">1/4<br>┕━</div><div onclick="CSpeed(1,10,.5)">1/2<br>━┻━</div><div onclick="CSpeed(2,10,1)">1<br>━┻━</div><div onclick="CSpeed(5,10,3)">3<br>━┻━</div><div onclick="CSpeed(5,5,5)">5<br>━┛</div></div>
+	</div>
+	<div class="nowspeed" id="currentSpeed">Current Speed:<span id="dDisplaySpeed">1</span></div>
+	<div class="content"><span>&nbsp;&nbsp;&nbsp; Speed Settings:</span>：<font color="#FFFF00"></font> <span style="color:#FF0"></span></div>
+	<br>
+	<div id="speedButtons"><input type=button value="play game" onclick="HiddenSpeed()"> <input type=button value="reset speed" onclick="CSpeed(1,10,1)"></div>
+    </div>
+    <script>
+
+	// Get the canvas element and the 2D context
+
+/* 	const canvas = document.getElementById('dAll');
+
+ 	const ctx = canvas.getContext('2d');
+
+	// Set the scaling factor
+	const scaleFactor = 0.5;
+
+	// Scale the canvas
+	ctx.scale(scaleFactor, scaleFactor);  */
+
+
+
+    $User.Client.PC&&$User.HTTP?( 
+	    (oS.AutoSun=Math.floor(getCookie('JSPVZAutoSun')))&&($('cAutoSun').checked=false),
+	    (oS.Silence=Math.floor(getCookie('JSPVZSilence')))&&($('cSilence').checked=false)
+    ):(	    oS.AutoSun=1,$('cAutoSun').checked=false,
+	    oS.Silence=0,$('cSilence').checked=false);
+    InitGame();
+    </script>
+    <script  src="js/CPlants.js"></script>
+    <script  src="js/CZombie.js"></script>
+	<script>
+		setTimeout(() => {
+			// SelectModal(0);SetBlock($('dSurface'),$('iSurfaceBackground'));
+			// ResetGame($('dMenu0'));
+			// StartAdventure();
+			// ViewHandBook();
+			// SetNone($('dSurface'),$('dPause'));
+			// SearchLvl(0);
+			// InitGame();
+			// SelectModal(0); SetBlock($('dSurface'), $('iSurfaceBackground'));
+			// ShowOptions();
+			// ShowNameDiv();
+			// ShowLevel();
+			// ShowMiniGame();
+			// ShowRiddleGame();
+
+			// Get a reference to the canvas element
+			var widthTest = document.getElementById("dBody");
+
+			// Get the intrinsic width of the canvas
+			var widthScreen = widthTest.clientWidth;
+			var heightScreen = widthTest.clientHeight;
+			scalingFactorX = 2.2 / (widthScreen/550)
+			scalingFactorY = 2.2 / (heightScreen/750)
+
+			scalingFactorX = 2.2 
+			scalingFactorY = 1.4
+
+			console.log(heightScreen)
+			console.log(scalingFactorY)
+
+
+			CSpeed(2,10,1);
+		}, 100)
+	
+	</script>
+<!--     <div style="display:none"><script src="http://s4.cnzz.com/z_stat.php?id=1256097379&web_id=1256097379" language="JavaScript"></script></div>
+ -->     <!--本网页来自江南游戏 || pvzweb.usa3v.net-->
+</body>
+</html>

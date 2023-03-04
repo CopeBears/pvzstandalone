@@ -1,0 +1,319 @@
+/* #dAll {
+  position: relative;
+}
+ */
+
+/* @media (max-width: 300px) {
+  #dBody {
+    transform: scale(0.25, 0.35);
+    margin: auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 400px) {
+  #dBody {
+    transform: scale(0.35, 0.52);
+    margin: auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 500px) {
+  #dBody {
+    transform: scale(0.45, 0.65);
+    margin: auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 600px) {
+  #dBody {
+    transform: scale(0.55, 0.73);
+    margin: auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+@media (min-width: 601px) and (max-width: 700px) {
+  #dBody {
+    transform: scale(0.63, 0.8);
+    margin: auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+@media (min-width: 701px) and (max-width: 800px) {
+  #dBody {
+    transform: scale(0.69, 0.86);
+    margin: auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+@media (min-width: 801px) and (max-width: 900px) {
+  #dBody {
+    transform: scale(0.78, 0.92);
+    margin: auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1000px) {
+  #dBody {
+    transform: scale(0.83, 0.98);
+    margin: auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+
+@media (min-width: 1001px) and (max-width: 1200px) {
+  #dBody {
+    transform: scale(0.89, 1.04);
+    margin-top: 60px;
+  }
+}
+@media (min-width: 1201px) and (max-width: 1400px) {
+  #dBody {
+    transform: scale(1.05, 1.08);
+    margin-top: 100px;
+  }
+}
+@media (min-width: 1001px) and (max-width: 3000px) {
+  #dBody {
+    transform: scale(1.15, 1.15);
+    margin-top: 100px;
+  }
+} */
+
+/* #dBody {
+  position: fixed;
+  top: 0px;
+  left: 205px;
+  transform: scale(0.45, 0.68);
+}
+ */
+
+#dBody {
+  position: fixed;
+  top: 5px;
+  left: 13%;
+  transform: scale(0.55, 0.9);
+}
+
+#DivTeach {
+  font-family: Arial, sans-serif;
+}
+
+#imgSF {
+  position: relative;
+  margin-top: -75px;
+}
+
+#dServer {
+  font-family: Arial, sans-serif;
+}
+
+#dSelectCard {
+  transform: scale(1.5, 1.1);
+}
+
+#dTitle {
+  transform: scale(1.7, 1.7);
+}
+
+#dOptionsMenuback {
+  transform: scale(1.6, 1.1);
+}
+
+#iGameOver {
+  position: relative;
+  margin-left: 240px;
+  margin-top: 100px;
+}
+
+/* .minigame-names {
+  font-size: 40px;
+} */
+
+#DivA {
+  display: none;
+}
+
+#dFlagMeterContent {
+  transform: scale(3.2, 1.5);
+  position: relative;
+  margin-left: -150px;
+  margin-top: 0px;
+}
+
+#dCardList {
+  transform: scale(1.3, 1.1);
+}
+
+#dSunNum {
+  transform: scale(1.9, 1.4);
+  position: relative;
+  margin-left: 80px;
+}
+
+#dMenu {
+  transform: scale(1, 2);
+  position: fixed;
+  top: 20px;
+}
+
+#dSpeed {
+  transform: scale(1.5, 3);
+  position: relative;
+  margin-top: 90px;
+  margin-left: 320px;
+}
+
+#speedAdjustment {
+  transform: scale(2, 2.8);
+  position: relative;
+  margin-left: 30px;
+}
+
+#currentSpeed {
+  transform: scale(2, 2.8);
+}
+
+#speedButtons {
+  transform: scale(2, 2.8);
+}
+
+#dSelectCard {
+  transform: scale(1.6, 1.1);
+  /*   position: relative;
+  margin-left: 30px; */
+}
+
+/* #bTitle {
+    position: relative;
+  margin-top: -350px;
+} */
+
+#btnOK {
+  transform: scale(1.4, 2);
+}
+
+#btnReset {
+  transform: scale(1.4, 2);
+}
+
+#plantList {
+  transform: scale(1.35, 1.05);
+}
+
+#zombieList {
+  transform: scale(1.05, 1.15);
+}
+
+#dProducePlant {
+  font-size: 24px;
+  letter-spacing: 1px;
+  line-height: 120%;
+}
+
+#dProduceZombie {
+  font-size: 22px;
+  letter-spacing: 1px;
+  line-height: 80%;
+}
+
+#btnViewPlant {
+  transform: scale(1.8, 2.6);
+}
+
+#btnViewZombie {
+  transform: scale(1.8, 2.6);
+}
+
+#handbookTitle {
+  transform: scale(3.8, 2.6);
+  position: relative;
+  margin-top: -20px;
+}
+
+#handbookTitleZombie {
+  transform: scale(3.8, 2.6);
+  position: relative;
+  margin-top: -20px;
+}
+
+/* #dMini0 {
+  position: relative;
+  transform: scale(1, 1.05);
+  letter-spacing: 1px;
+  line-height: 1px;
+  margin: 0px;
+} */
+
+/* #exitMinigame {
+  position: absolute;
+  top: 700px;
+  left: 200px;
+} */
+
+#minigameSheet {
+  position: relative;
+  transform: scale(2.1, 1.2);
+  margin-left: 240px;
+  margin-top: 25px;
+}
+
+#minigameSheet2 {
+  position: relative;
+  transform: scale(1.9, 1.15);
+  margin-left: 240px;
+  margin-top: 25px;
+}
+
+#closeButton {
+  transform: scale(2, 2);
+}
+
+#exitMinigame {
+  transform: scale(2, 2);
+}
+
+#exitMenu {
+  transform: scale(2, 2);
+}
+
+#dRiddleClose {
+  transform: scale(2, 2);
+}
+
+#dMenu0 {
+  font-size: 24px;
+}
+
+#dMenu1 {
+  font-size: 24px;
+}
+
+#pZombieBack {
+  position: fixed;
+  transform: scale(1.5, 1.1);
+  left: 120px;
+}
+
+#dHandBookZCard {
+  transform: scale(1.15, 1.5);
+  position: relative;
+  margin-top: 160px;
+  margin-left: 50px;
+}
+
+#pHandBookZombie {
+  position: relative;
+  margin-left: 40px;
+}
